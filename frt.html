@@ -1,0 +1,54 @@
+<?php require_once('Connections/twconn.php'); ?>
+<?php
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+mysql_select_db($database_twconn, $twconn);
+$query_FirstRecordset = "SELECT * FROM tb1";
+$FirstRecordset = mysql_query($query_FirstRecordset, $twconn) or die(mysql_error());
+$row_FirstRecordset = mysql_fetch_assoc($FirstRecordset);
+$totalRows_FirstRecordset = mysql_num_rows($FirstRecordset);
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="includes/FusionCharts/dynamic/js/FusionCharts.js"></script>
+</head>
+
+<body>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut leo. Vestibulum ante. Nullam orci risus, aliquet at, semper ut, tristique eget, risus. Nunc congue. Aliquam erat volutpat. Vivamus massa. Phasellus in velit. Phasellus metus sem, accumsan sit amet, porta nec, tincidunt ut, urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel diam. Nam rutrum mattis est. Mauris a diam at ipsum luctus pharetra. Suspendisse sit amet tortor. Donec pharetra, nibh convallis suscipit porta, lorem arcu tincidunt est, non malesuada est purus eu dui. Etiam mauris ante, luctus non, aliquet sit amet, pharetra vitae, urna. Nullam in ante sed nibh commodo tristique. Etiam hendrerit, nulla sit amet tincidunt scelerisque, diam leo consectetur dolor, eget fermentum nisi neque ac dui. </p>
+
+<p>Proin pharetra sollicitudin dui. Aenean sed velit. Suspendisse eget risus. Cras nulla felis, pulvinar in, sollicitudin nec, eleifend et, urna. Suspendisse interdum orci eu leo. Donec risus dolor, hendrerit et, facilisis vitae, malesuada in, urna. Vivamus sed augue ac risus hendrerit ultricies. Suspendisse suscipit nibh non nulla. Duis mauris. Cras sit amet ante. Morbi dapibus arcu et augue. Morbi non dolor auctor est laoreet facilisis. </p>
+</body>
+</html>
+<?php
+mysql_free_result($FirstRecordset);
+?>

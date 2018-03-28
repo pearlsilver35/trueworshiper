@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Recordset1" value="name:Date;datatype:date,name:Singer;datatype:string,name:prayer1;datatype:string,name:prayer2;datatype:string,name:prayer3;datatype:string,name:prayer4;datatype:string,name:preacher;datatype:string" />
+	<infoitem key="UD_Recordset2" value="name:Name;datatype:string,name:DOB;datatype:date" />
+	<infoitem key="UD_bda" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_wed" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_extra" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_extra2" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_bday" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+</info>

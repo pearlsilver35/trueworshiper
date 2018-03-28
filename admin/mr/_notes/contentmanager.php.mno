@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_birthday" value="name:Name;datatype:string,name:DOB;datatype:date" />
+	<infoitem key="UD_viewstaffs" value="name:id;datatype:int,name:Name;datatype:string,name:DOB;datatype:date,name:Singer;datatype:string,name:Prayer;datatype:string,name:Preacher;datatype:string" />
+	<infoitem key="UD_dissinger" value="name:Name;datatype:string" />
+	<infoitem key="UD_pray1" value="name:Name;datatype:string" />
+	<infoitem key="UD_pray2" value="name:Name;datatype:string" />
+	<infoitem key="UD_pray3" value="name:Name;datatype:string" />
+	<infoitem key="UD_pray4" value="name:Name;datatype:string" />
+	<infoitem key="UD_preacher" value="name:Name;datatype:string" />
+	<infoitem key="UD_Recordset1" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_wed" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_extra" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_extra2" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_bday" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_extra3" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_dscrip" value="name:id;datatype:string,name:scripture;datatype:string,name:verse1;datatype:string,name:verse2;datatype:string,name:image;datatype:string,name:istletter;datatype:string" />
+</info>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Recordset1" value="name:id;datatype:string,name:data;datatype:blob,name:time;datatype:timestamp" />
+	<infoitem key="UD_Recordset2" value="name:Name;datatype:string,name:day(DOB);datatype:int" />
+	<infoitem key="UD_bda" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_wed" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_extra" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_extra2" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_bday" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_extra3" value="name:id;datatype:string,name:words;datatype:string,name:Title;datatype:string,name:images;datatype:string" />
+	<infoitem key="UD_dscrip" value="name:id;datatype:string,name:scripture;datatype:string,name:verse1;datatype:string,name:verse2;datatype:string,name:image;datatype:string,name:istletter;datatype:string" />
+</info>

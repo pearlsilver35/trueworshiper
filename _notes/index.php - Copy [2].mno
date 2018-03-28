@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Recordset1" value="name:Date;datatype:date,name:Singer;datatype:string,name:prayer1;datatype:string,name:prayer2;datatype:string,name:prayer3;datatype:string,name:prayer4;datatype:string,name:preacher;datatype:string" />
+	<infoitem key="UD_Recordset2" value="name:Name;datatype:string,name:DOB;datatype:date" />
+</info>

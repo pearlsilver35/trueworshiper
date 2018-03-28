@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_staffs" value="name:id;datatype:int,name:Name;datatype:string,name:Department;datatype:string,name:DOB;datatype:date,name:Password;datatype:string,name:Role;datatype:string,name:Leaves;datatype:string,name:Singer;datatype:string,name:Prayer;datatype:string,name:Preacher;datatype:string" />
+	<infoitem key="UD_bday" value="name:Name;datatype:string,name:DOB;datatype:date" />
+	<infoitem key="UD_leaves" value="name:id;datatype:int,name:Name;datatype:string,name:Department;datatype:string" />
+	<infoitem key="UD_sing" value="name:SUM(Singer = 'Yes');datatype:real" />
+	<infoitem key="UD_pray" value="name:SUM(Prayer= 'Yes');datatype:real" />
+	<infoitem key="UD_preach" value="name:SUM(Preacher= 'Yes');datatype:real" />
+	<infoitem key="UD_data" value="name:SUM(Singer = 'Yes');datatype:real,name:SUM(Prayer= 'Yes');datatype:real,name:SUM(Preacher= 'Yes');datatype:real" />
+</info>
