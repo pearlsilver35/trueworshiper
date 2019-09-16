@@ -6,7 +6,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -67,7 +67,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -98,7 +98,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -129,7 +129,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -158,7 +158,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -189,7 +189,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -220,7 +220,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -251,7 +251,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -282,7 +282,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -315,7 +315,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -352,8 +352,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form")) {
                        GetSQLValueString(isset($_POST['praying']) ? "true" : "", "defined","'Yes'","'no'"),
                        GetSQLValueString(isset($_POST['preaching']) ? "true" : "", "defined","'Yes'","'no'"));
 
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($insertSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($insertSQL) or die(mysqli_error());
 
   $insertGoTo = "admin.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -371,8 +371,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "former")) {
                        GetSQLValueString($_POST['preacher'], "text"),
                        GetSQLValueString($_POST['Name'], "text"));
 
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($updateSQL) or die(mysqli_error());
 
   $updateGoTo = "admin.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -390,8 +390,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "former")) {
                        GetSQLValueString($_POST['preacher'], "text"),
                        GetSQLValueString($_POST['Name'], "text"));
 
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn, $twconn);
+  $Result1 = mysqli_query($updateSQL, $twconn) or die(mysqli_error());
 
   $updateGoTo = "admin.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -430,8 +430,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form5")) {
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn, $twconn);
+  $Result1 = mysqli_query($updateSQL, $twconn) or die(mysqli_error());
 
   $updateGoTo = "admin.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -472,8 +472,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form6")) {
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn, $twconn);
+  $Result1 = mysqli_query($updateSQL, $twconn) or die(mysqli_error());
 
   $updateGoTo = "admin.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -512,8 +512,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form7")) {
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn, $twconn);
+  $Result1 = mysqli_query($updateSQL, $twconn) or die(mysqli_error());
 
   $updateGoTo = "admin.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -551,8 +551,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form8")) {
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn, $twconn);
+  $Result1 = mysqli_query($updateSQL, $twconn) or die(mysqli_error());
 
   $updateGoTo = "admin.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -566,11 +566,11 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form8")) {
 
 
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_birthday = "SELECT Name, DOB FROM tb1 WHERE month(DOB)=month(curdate()) and day(DOB)=day(curdate())";
-$birthday = mysql_query($query_birthday, $twconn) or die(mysql_error());
-$row_birthday = mysql_fetch_assoc($birthday);
-$totalRows_birthday = mysql_num_rows($birthday);
+$birthday = mysqli_query($query_birthday, $twconn) or die(mysqli_error());
+$row_birthday = mysqli_fetch_assoc($birthday);
+$totalRows_birthday = mysqli_num_rows($birthday);
 
 $maxRows_viewstaffs = 15;
 $pageNum_viewstaffs = 0;
@@ -579,79 +579,79 @@ if (isset($_GET['pageNum_viewstaffs'])) {
 }
 $startRow_viewstaffs = $pageNum_viewstaffs * $maxRows_viewstaffs;
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_viewstaffs = "SELECT id, Name, DOB, Singer, Prayer, Preacher FROM tb1";
 $query_limit_viewstaffs = sprintf("%s LIMIT %d, %d", $query_viewstaffs, $startRow_viewstaffs, $maxRows_viewstaffs);
-$viewstaffs = mysql_query($query_limit_viewstaffs, $twconn) or die(mysql_error());
-$row_viewstaffs = mysql_fetch_assoc($viewstaffs);
+$viewstaffs = mysqli_query($query_limit_viewstaffs, $twconn) or die(mysqli_error());
+$row_viewstaffs = mysqli_fetch_assoc($viewstaffs);
 
 if (isset($_GET['totalRows_viewstaffs'])) {
   $totalRows_viewstaffs = $_GET['totalRows_viewstaffs'];
 } else {
-  $all_viewstaffs = mysql_query($query_viewstaffs);
-  $totalRows_viewstaffs = mysql_num_rows($all_viewstaffs);
+  $all_viewstaffs = mysqli_query($query_viewstaffs);
+  $totalRows_viewstaffs = mysqli_num_rows($all_viewstaffs);
 }
 $totalPages_viewstaffs = ceil($totalRows_viewstaffs/$maxRows_viewstaffs)-1;
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_dissinger = "SELECT Name FROM tb1 WHERE Singer = 'yes' ORDER BY rand() limit 5";
-$dissinger = mysql_query($query_dissinger, $twconn) or die(mysql_error());
-$row_dissinger = mysql_fetch_assoc($dissinger);
-$totalRows_dissinger = mysql_num_rows($dissinger);
+$dissinger = mysqli_query($query_dissinger, $twconn) or die(mysqli_error());
+$row_dissinger = mysqli_fetch_assoc($dissinger);
+$totalRows_dissinger = mysqli_num_rows($dissinger);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_pray1 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' ORDER BY rand() limit 5";
-$pray1 = mysql_query($query_pray1, $twconn) or die(mysql_error());
-$row_pray1 = mysql_fetch_assoc($pray1);
-$totalRows_pray1 = mysql_num_rows($pray1);
+$pray1 = mysqli_query($query_pray1, $twconn) or die(mysqli_error());
+$row_pray1 = mysqli_fetch_assoc($pray1);
+$totalRows_pray1 = mysqli_num_rows($pray1);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_pray2 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' ORDER BY rand() limit 5";
-$pray2 = mysql_query($query_pray2, $twconn) or die(mysql_error());
-$row_pray2 = mysql_fetch_assoc($pray2);
-$totalRows_pray2 = mysql_num_rows($pray2);
+$pray2 = mysqli_query($query_pray2, $twconn) or die(mysqli_error());
+$row_pray2 = mysqli_fetch_assoc($pray2);
+$totalRows_pray2 = mysqli_num_rows($pray2);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_pray3 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' ORDER BY rand() limit 5";
-$pray3 = mysql_query($query_pray3, $twconn) or die(mysql_error());
-$row_pray3 = mysql_fetch_assoc($pray3);
-$totalRows_pray3 = mysql_num_rows($pray3);
+$pray3 = mysqli_query($query_pray3, $twconn) or die(mysqli_error());
+$row_pray3 = mysqli_fetch_assoc($pray3);
+$totalRows_pray3 = mysqli_num_rows($pray3);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_pray4 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' ORDER BY rand() limit 5";
-$pray4 = mysql_query($query_pray4, $twconn) or die(mysql_error());
-$row_pray4 = mysql_fetch_assoc($pray4);
-$totalRows_pray4 = mysql_num_rows($pray4);
+$pray4 = mysqli_query($query_pray4, $twconn) or die(mysqli_error());
+$row_pray4 = mysqli_fetch_assoc($pray4);
+$totalRows_pray4 = mysqli_num_rows($pray4);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_preacher = "SELECT Name FROM tb1 WHERE Preacher = 'yes' ORDER BY rand() limit 5";
-$preacher = mysql_query($query_preacher, $twconn) or die(mysql_error());
-$row_preacher = mysql_fetch_assoc($preacher);
-$totalRows_preacher = mysql_num_rows($preacher);
+$preacher = mysqli_query($query_preacher, $twconn) or die(mysqli_error());
+$row_preacher = mysqli_fetch_assoc($preacher);
+$totalRows_preacher = mysqli_num_rows($preacher);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_Recordset1 = "SELECT * FROM content WHERE id = 'bday'";
-$Recordset1 = mysql_query($query_Recordset1, $twconn) or die(mysql_error());
-$row_Recordset1 = mysql_fetch_assoc($Recordset1);
-$totalRows_Recordset1 = mysql_num_rows($Recordset1);
+$Recordset1 = mysqli_query($query_Recordset1, $twconn) or die(mysqli_error());
+$row_Recordset1 = mysqli_fetch_assoc($Recordset1);
+$totalRows_Recordset1 = mysqli_num_rows($Recordset1);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_wed = "SELECT * FROM content WHERE id = 'wed'";
-$wed = mysql_query($query_wed, $twconn) or die(mysql_error());
-$row_wed = mysql_fetch_assoc($wed);
-$totalRows_wed = mysql_num_rows($wed);
+$wed = mysqli_query($query_wed, $twconn) or die(mysqli_error());
+$row_wed = mysqli_fetch_assoc($wed);
+$totalRows_wed = mysqli_num_rows($wed);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_extra = "SELECT * FROM content WHERE id = 'extra'";
-$extra = mysql_query($query_extra, $twconn) or die(mysql_error());
-$row_extra = mysql_fetch_assoc($extra);
-$totalRows_extra = mysql_num_rows($extra);
+$extra = mysqli_query($query_extra, $twconn) or die(mysqli_error());
+$row_extra = mysqli_fetch_assoc($extra);
+$totalRows_extra = mysqli_num_rows($extra);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_extra2 = "SELECT * FROM content WHERE id = 'extra2'";
-$extra2 = mysql_query($query_extra2, $twconn) or die(mysql_error());
-$row_extra2 = mysql_fetch_assoc($extra2);
-$totalRows_extra2 = mysql_num_rows($extra2);
+$extra2 = mysqli_query($query_extra2, $twconn) or die(mysqli_error());
+$row_extra2 = mysqli_fetch_assoc($extra2);
+$totalRows_extra2 = mysqli_num_rows($extra2);
 
 $queryString_viewstaffs = "";
 if (!empty($_SERVER['QUERY_STRING'])) {
@@ -929,7 +929,7 @@ function MM_validateForm() { //v4.0
   </div>
 </div>
   
-  <?php } while ($row_viewstaffs = mysql_fetch_assoc($viewstaffs)); ?>
+  <?php } while ($row_viewstaffs = mysqli_fetch_assoc($viewstaffs)); ?>
   
 </table>
   </table>
@@ -971,13 +971,13 @@ function MM_validateForm() { //v4.0
                 <td><?php echo $row_pray4['Name']; ?></td>
        		    <td><?php echo $row_preacher['Name']; ?></td>
                 
-           <?php    ($row_pray1 = mysql_fetch_assoc($pray1))  ?>
-           <?php      ($row_pray2 = mysql_fetch_assoc($pray2))  ?>
-           <?php      ($row_pray3 = mysql_fetch_assoc($pray3))  ?>
-           <?php      ($row_pray4 = mysql_fetch_assoc($pray4))  ?>
-             <?php      ($row_preacher = mysql_fetch_assoc($preacher))  ?>
+           <?php    ($row_pray1 = mysqli_fetch_assoc($pray1))  ?>
+           <?php      ($row_pray2 = mysqli_fetch_assoc($pray2))  ?>
+           <?php      ($row_pray3 = mysqli_fetch_assoc($pray3))  ?>
+           <?php      ($row_pray4 = mysqli_fetch_assoc($pray4))  ?>
+             <?php      ($row_preacher = mysqli_fetch_assoc($preacher))  ?>
              </tr>
-  <?php } while ($row_dissinger = mysql_fetch_assoc($dissinger))  ?>
+  <?php } while ($row_dissinger = mysqli_fetch_assoc($dissinger))  ?>
              
              </td>
              
@@ -1203,27 +1203,27 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 </body>
 </html>
 <?php
-mysql_free_result($birthday);
+mysqli_free_result($birthday);
 
-mysql_free_result($viewstaffs);
+mysqli_free_result($viewstaffs);
 
-mysql_free_result($dissinger);
+mysqli_free_result($dissinger);
 
-mysql_free_result($pray1);
+mysqli_free_result($pray1);
 
-mysql_free_result($pray2);
+mysqli_free_result($pray2);
 
-mysql_free_result($pray3);
+mysqli_free_result($pray3);
 
-mysql_free_result($pray4);
+mysqli_free_result($pray4);
 
-mysql_free_result($preacher);
+mysqli_free_result($preacher);
 
-mysql_free_result($Recordset1);
+mysqli_free_result($Recordset1);
 
-mysql_free_result($wed);
+mysqli_free_result($wed);
 
-mysql_free_result($extra);
+mysqli_free_result($extra);
 
-mysql_free_result($extra2);
+mysqli_free_result($extra2);
 ?>

@@ -29,7 +29,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_FirstRecordset = "SELECT * FROM tb1";
 $FirstRecordset = mysql_query($query_FirstRecordset, $twconn) or die(mysql_error());
 $row_FirstRecordset = mysql_fetch_assoc($FirstRecordset);
@@ -50,5 +50,5 @@ $totalRows_FirstRecordset = mysql_num_rows($FirstRecordset);
 </body>
 </html>
 <?php
-mysql_free_result($FirstRecordset);
+mysqli_free_result($FirstRecordset);
 ?>

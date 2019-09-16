@@ -31,11 +31,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn, $twconn);
 $query_Recordset1 = "SELECT words FROM content WHERE id = 'bday'";
 $Recordset1 = mysql_query($query_Recordset1, $twconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 
-mysql_free_result($Recordset1);
+mysqli_free_result($Recordset1);
 ?>

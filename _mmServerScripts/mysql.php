@@ -101,7 +101,7 @@ class MySqlConnection
 	  $this->connectionId = mysql_connect($this->hostname, $this->username, $this->password);
 		if (isset($this->connectionId) && $this->connectionId && is_resource($this->connectionId))
 		{
-			$this->isOpen = ($this->database == "") ? true : mysql_select_db($this->database, $this->connectionId);
+			$this->isOpen = ($this->database == "") ? true : mysqli_select_db($twconn,$this->database, $this->connectionId);
 		}
 		else
 		{
@@ -225,7 +225,7 @@ class MySqlConnection
 				$xmlOutput .= "<VALUE>" . $null         . "</VALUE>";
 				$xmlOutput .= "<VALUE>" . $size         . "</VALUE></ROW>";
 			}
-			mysql_free_result($result);
+			mysqli_free_result($result);
 
 			$xmlOutput .= "</ROWS></RESULTSET>";
 		}
@@ -294,7 +294,7 @@ class MySqlConnection
 				$row = mysql_fetch_assoc($result);
 			}
 
-			mysql_free_result($result);
+			mysqli_free_result($result);
 
 			$xmlOutput .= "</ROWS></RESULTSET>";
 		}
@@ -427,7 +427,7 @@ class MySqlConnection
   				$xmlOutput .= '<VALUE>' . $size         . '</VALUE></ROW>';
   			}
 			}
-			mysql_free_result($result);
+			mysqli_free_result($result);
 
 			$xmlOutput .= '</ROWS></RESULTSET>';
 		}

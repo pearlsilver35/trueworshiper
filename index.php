@@ -38,61 +38,61 @@ if (isset($_GET['pageNum_Recordset1'])) {
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn , $database_twconn);
 $query_Recordset1 = "SELECT * FROM test ORDER BY id DESC";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
-$Recordset1 = mysql_query($query_limit_Recordset1, $twconn) or die(mysql_error());
-$row_Recordset1 = mysql_fetch_assoc($Recordset1);
+$Recordset1 = mysqli_query($twconn, $query_limit_Recordset1) or die(mysql_error());
+$row_Recordset1 = mysqli_fetch_assoc($Recordset1);
 
 if (isset($_GET['totalRows_Recordset1'])) {
   $totalRows_Recordset1 = $_GET['totalRows_Recordset1'];
 } else {
-  $all_Recordset1 = mysql_query($query_Recordset1);
-  $totalRows_Recordset1 = mysql_num_rows($all_Recordset1);
+  $all_Recordset1 = mysqli_query($twconn , $query_Recordset1);
+  $totalRows_Recordset1 = mysqli_num_rows($all_Recordset1);
 }
 $totalPages_Recordset1 = ceil($totalRows_Recordset1/$maxRows_Recordset1)-1;
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn , $database_twconn);
 $query_Recordset2 = "SELECT Name, day(DOB) FROM tb1 WHERE month(DOB)=month(curdate()) ORDER BY DOB ASC";
-$Recordset2 = mysql_query($query_Recordset2, $twconn) or die(mysql_error());
-$row_Recordset2 = mysql_fetch_assoc($Recordset2);
-$totalRows_Recordset2 = mysql_num_rows($Recordset2);
+$Recordset2 = mysqli_query($twconn, $query_Recordset2) or die(mysql_error());
+$row_Recordset2 = mysqli_fetch_assoc($Recordset2);
+$totalRows_Recordset2 = mysqli_num_rows($Recordset2);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn , $database_twconn);
 $query_bday = "SELECT * FROM content WHERE id = 'bday'";
-$bday = mysql_query($query_bday, $twconn) or die(mysql_error());
-$row_bday = mysql_fetch_assoc($bday);
-$totalRows_bday = mysql_num_rows($bday);
+$bday = mysqli_query($twconn, $query_bday) or die(mysql_error());
+$row_bday = mysqli_fetch_assoc($bday);
+$totalRows_bday = mysqli_num_rows($bday);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn , $database_twconn);
 $query_wed = "SELECT * FROM content WHERE id = 'wed'";
-$wed = mysql_query($query_wed, $twconn) or die(mysql_error());
-$row_wed = mysql_fetch_assoc($wed);
-$totalRows_wed = mysql_num_rows($wed);
+$wed = mysqli_query($twconn, $query_wed) or die(mysql_error());
+$row_wed = mysqli_fetch_assoc($wed);
+$totalRows_wed = mysqli_num_rows($wed);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn , $database_twconn);
 $query_extra = "SELECT * FROM content WHERE id = 'extra'";
-$extra = mysql_query($query_extra, $twconn) or die(mysql_error());
-$row_extra = mysql_fetch_assoc($extra);
-$totalRows_extra = mysql_num_rows($extra);
+$extra = mysqli_query($twconn, $query_extra) or die(mysql_error());
+$row_extra = mysqli_fetch_assoc($extra);
+$totalRows_extra = mysqli_num_rows($extra);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn , $database_twconn);
 $query_extra2 = "SELECT * FROM content WHERE id = 'extra2'";
-$extra2 = mysql_query($query_extra2, $twconn) or die(mysql_error());
-$row_extra2 = mysql_fetch_assoc($extra2);
-$totalRows_extra2 = mysql_num_rows($extra2);
+$extra2 = mysqli_query($twconn, $query_extra2) or die(mysql_error());
+$row_extra2 = mysqli_fetch_assoc($extra2);
+$totalRows_extra2 = mysqli_num_rows($extra2);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn , $database_twconn);
 $query_extra3 = "SELECT * FROM content WHERE id = 'extra3'";
-$extra3 = mysql_query($query_extra3, $twconn) or die(mysql_error());
-$row_extra3 = mysql_fetch_assoc($extra3);
-$totalRows_extra3 = mysql_num_rows($extra3);
+$extra3 = mysqli_query($twconn, $query_extra3) or die(mysql_error());
+$row_extra3 = mysqli_fetch_assoc($extra3);
+$totalRows_extra3 = mysqli_num_rows($extra3);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn , $database_twconn);
 $query_dscrip = "SELECT * FROM dailyscripture";
-$dscrip = mysql_query($query_dscrip, $twconn) or die(mysql_error());
-$row_dscrip = mysql_fetch_assoc($dscrip);
-$totalRows_dscrip = mysql_num_rows($dscrip);
+$dscrip = mysqli_query($twconn, $query_dscrip) or die(mysql_error());
+$row_dscrip = mysqli_fetch_assoc($dscrip);
+$totalRows_dscrip = mysqli_num_rows($dscrip);
 ?>
 <?php
 // *** Validate request to login to this site.
@@ -112,7 +112,7 @@ if (isset($_POST['name'])) {
   $MM_redirectLoginSuccess = "admin.php";
   $MM_redirectLoginFailed = "index.php";
   $MM_redirecttoReferrer = false;
-  mysql_select_db($database_twconn, $twconn);
+  mysqli_select_db($twconn,$database_twconn, $twconn);
   
   $LoginRS__query=sprintf("SELECT Name, Password FROM tb1 WHERE Name=%s AND Password=%s",
     GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
@@ -145,8 +145,6 @@ if (isset($_POST['name'])) {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
     <title>True Worshiper</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -274,19 +272,18 @@ if (isset($_POST['name'])) {
               
      
              <table border="1" >
-<tr class="box-shadow"><td>
 <table class="table table-striped table-bordered table-hover table-condensed " !important>
 
            <tr class="danger">
-            <th>Date & Time</th>
-            <th>Opening Prayers(8:15-8:20)</th>
-             <th>Moment of Praise & Worship(8:20-8:35)</th>
-             <th>Prayers for Kingdom Advancement (8:20-8:35)</th>
-              <th>Let’s Lift Up Nigeria (8:35-8:40)</th>
-             <th>We Present this Company(8:40-8:45)</th>
-              <th>Pouring Our Hearts(8:45-8:50)</th>
-             <th>Admonition and Charge(8:50-8:57)</th>
-             <th>Benediction(8:57-9:00)</th>
+            <td>Date & Time</td>
+            <td>Opening Prayers(8:15-8:20)</td>
+             <td>Moment of Praise & Worship(8:20-8:35)</td>
+             <td>Prayers for Kingdom Advancement (8:20-8:35)</td>
+              <td>Let’s Lift Up Nigeria (8:35-8:40)</td>
+             <td>We Present this Company(8:40-8:45)</td>
+              <td>Pouring Our Hearts(8:45-8:50)</td>
+             <td>Admonition and Charge(8:50-8:57)</td>
+             <td>Benediction(8:57-9:00)</td>
 
              </tr>
            <!-- This is where all the data from the db is outputedededed -->
@@ -294,9 +291,6 @@ if (isset($_POST['name'])) {
  
           
  		  </table>
-
-      </td></tr>
-       </table>
                
 <div class="col-sm-6">
                     <div class="col-wrapper">
@@ -362,7 +356,7 @@ if (isset($_POST['name'])) {
             <td><?php echo $row_Recordset2['Name']; ?></td>
             
           </tr>
-          <?php } while ($row_Recordset2 = mysql_fetch_assoc($Recordset2)); ?>
+          <?php } while ($row_Recordset2 = mysqli_fetch_assoc($Recordset2)); ?>
       </table>
 </div>
 <div class="col-sm-10 left">
@@ -456,19 +450,19 @@ var password1 = new Spry.Widget.ValidationPassword("password1" , {hint:"Password
 </body>
 </html>
 <?php
-mysql_free_result($Recordset1);
+mysqli_free_result($Recordset1);
 
-mysql_free_result($Recordset2);
+mysqli_free_result($Recordset2);
 
-mysql_free_result($bday);
+mysqli_free_result($bday);
 
-mysql_free_result($wed);
+mysqli_free_result($wed);
 
-mysql_free_result($extra);
+mysqli_free_result($extra);
 
-mysql_free_result($extra2);
+mysqli_free_result($extra2);
 
-mysql_free_result($extra3);
+mysqli_free_result($extra3);
 
-mysql_free_result($dscrip);
+mysqli_free_result($dscrip);
 ?>

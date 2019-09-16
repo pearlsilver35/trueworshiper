@@ -1722,9 +1722,5 @@ td.text-right {
   text-align: right;
 }
 
-.box-shadow{
-    box-shadow: 4px 4px 9px rgba(0,0,0,.25);
-    border-radius: 3px 3px 3px 3px ;
- }
 
 }

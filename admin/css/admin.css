@@ -1588,20 +1588,4 @@ footer ul li a {
     height: 25.06px;
     vertical-align: text-top;
     padding-top: 1px;
-}
- .vertical-text{
-    transform: rotate(90deg);
-    transform-origin: right middle 0;
-    float : right;
-
  }
- .verticaltext{
-    width:1px;
-    word-wrap: break-word;
-    font-family: monospace; /* this is just for good looks */
-}
-
- .box-shadow{
-    box-shadow: 3px 3px 9px rgba(0,0,0,.25);
- }
- 

@@ -49,7 +49,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -73,41 +73,41 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn, $database_twconn);
 $query_staffs = "SELECT * FROM tb1";
-$staffs = mysql_query($query_staffs, $twconn) or die(mysql_error());
-$row_staffs = mysql_fetch_assoc($staffs);
-$totalRows_staffs = mysql_num_rows($staffs);
+$staffs = mysqli_query($twconn, $query_staffs) or die(mysqli_error());
+$row_staffs = mysqli_fetch_assoc($staffs);
+$totalRows_staffs = mysqli_num_rows($staffs);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn, $database_twconn);
 $query_bday = "SELECT Name, DOB FROM tb1 WHERE month(DOB)=month(curdate())";
-$bday = mysql_query($query_bday, $twconn) or die(mysql_error());
-$row_bday = mysql_fetch_assoc($bday);
-$totalRows_bday = mysql_num_rows($bday);
+$bday = mysqli_query($twconn, $query_bday) or die(mysqli_error());
+$row_bday = mysqli_fetch_assoc($bday);
+$totalRows_bday = mysqli_num_rows($bday);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn, $database_twconn);
 $query_leaves = "SELECT id, Name, Department FROM tb1 WHERE Leaves = 'Yes'";
-$leaves = mysql_query($query_leaves, $twconn) or die(mysql_error());
-$row_leaves = mysql_fetch_assoc($leaves);
-$totalRows_leaves = mysql_num_rows($leaves);
+$leaves = mysqli_query($twconn, $query_leaves) or die(mysqli_error());
+$row_leaves = mysqli_fetch_assoc($leaves);
+$totalRows_leaves = mysqli_num_rows($leaves);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn, $database_twconn);
 $query_data = "SELECT SUM(Singer = 'Yes'), SUM(Prayer= 'Yes'), SUM(Preacher= 'Yes') FROM tb1";
-$data = mysql_query($query_data, $twconn) or die(mysql_error());
-$row_data = mysql_fetch_assoc($data);
-$totalRows_data = mysql_num_rows($data);
+$data = mysqli_query($twconn, $query_data) or die(mysqli_error());
+$row_data = mysqli_fetch_assoc($data);
+$totalRows_data = mysqli_num_rows($data);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn, $database_twconn);
 $query_pray = "SELECT SUM(Prayer= 'Yes')  FROM tb1;";
-$pray = mysql_query($query_pray, $twconn) or die(mysql_error());
-$row_pray = mysql_fetch_assoc($pray);
-$totalRows_pray = mysql_num_rows($pray);
+$pray = mysqli_query($twconn, $query_pray) or die(mysqli_error());
+$row_pray = mysqli_fetch_assoc($pray);
+$totalRows_pray = mysqli_num_rows($pray);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn, $database_twconn);
 $query_preach = "SELECT SUM(Preacher= 'Yes')  FROM tb1;";
-$preach = mysql_query($query_preach, $twconn) or die(mysql_error());
-$row_preach = mysql_fetch_assoc($preach);
-$totalRows_preach = mysql_num_rows($preach);
+$preach = mysqli_query($twconn, $query_preach) or die(mysqli_error());
+$row_preach = mysqli_fetch_assoc($preach);
+$totalRows_preach = mysqli_num_rows($preach);
 ?>
 <!doctype html>
 <html lang="en">
@@ -177,8 +177,7 @@ $totalRows_preach = mysql_num_rows($preach);
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo $logoutAction ?>" >
-
+                        <a >
                             <i class="material-icons">bubble_chart</i>
                             <p>Logout</p>
                         </a>
@@ -202,7 +201,12 @@ $totalRows_preach = mysql_num_rows($preach);
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                            
-                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="material-icons">notifications</i>
+                                    <span class="notification">5</span>
+                                    <p class="hidden-lg hidden-md">Notifications</p>
+                                </a>
                                 
                             </li>
                             <li>
@@ -271,8 +275,45 @@ $totalRows_preach = mysql_num_rows($preach);
                     <div class="row">
                         
                         <div class="col-md-6">
-                             <div class="card">
-                                <div class="card-header" data-background-color="blue">
+                            <div class="card">
+                                <div class="card-header card-chart" data-background-color="red">
+                                    <div class="ct-chart" id="emailsSubscriptionChart"></div>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="title">Barchart of staffs </h4>
+                                    <p class="category">Barchart of staffs Performance</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">access_time</i> sats for the next 1 year
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="col-md-6">
+                            <div class="card">
+                                <div  data-background-color="orange"> </div>
+<div class="card-content">
+                                    <h4 class="title">Welcome</h4>
+                                    <p class="category">Admin</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">access_time</i> campaign sent 2 days ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                        
+                            <div class="card card-nav-tabs">
+                                
+                                <div class="card-content">
+                                    <div class="tab-content">
+                                        
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card">
+                                <div class="card-header" data-background-color="green">
                                     <h4 class="title">Employees Stats</h4>
                                     <p class="category">Employees on Leave</p>
                                 </div>
@@ -290,7 +331,7 @@ $totalRows_preach = mysql_num_rows($preach);
                                           <td><?php echo $row_leaves['Name']; ?></td>
                                           <td><?php echo $row_leaves['Department']; ?></td>
                                         </tr>
-                                        <?php } while ($row_leaves = mysql_fetch_assoc($leaves)); ?>
+                                        <?php } while ($row_leaves = mysqli_fetch_assoc($leaves)); ?>
                                         </tbody>
                                     </table>
                                     
@@ -301,35 +342,6 @@ $totalRows_preach = mysql_num_rows($preach);
                             
                     </div>
                 </div>
-                        
-                       <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header" data-background-color="orange" ><h4 class="title">Welcome</h4>
-                                    <p class="category">Admin</p> </div>
-<div class="card-content">
-                                    
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">access_time</i> This is your Dash Board
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row">
-                        
-                            <div class="card card-nav-tabs">
-                                
-                                <div class="card-content">
-                                    <div class="tab-content">
-                                        
-                       
-                                
-                                
-                            
-                    </div>
-                </div>
-            </div>
             </div>
                                     
 <footer class="footer">
@@ -376,15 +388,15 @@ $totalRows_preach = mysql_num_rows($preach);
 
 </html>
 <?php
-mysql_free_result($staffs);
+mysqli_free_result($staffs);
 
-mysql_free_result($bday);
+mysqli_free_result($bday);
 
-mysql_free_result($leaves);
+mysqli_free_result($leaves);
 
-mysql_free_result($data);
+mysqli_free_result($data);
 
-mysql_free_result($pray);
+mysqli_free_result($pray);
 
-mysql_free_result($preach);
+mysqli_free_result($preach);
 ?>

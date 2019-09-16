@@ -48,7 +48,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -79,7 +79,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -110,7 +110,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -139,7 +139,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -163,129 +163,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
-
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
-
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
-
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
-
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
-
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
-
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
 
 $currentPage = $_SERVER["PHP_SELF"];
 
@@ -296,7 +174,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -353,8 +231,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form5")) {
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($twconn, $updateSQL) or die(mysqli_error());
 
   $updateGoTo = "Contentmanager.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -395,8 +273,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form6")) {
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($twconn, $updateSQL) or die(mysqli_error());
 
   $updateGoTo = "Contentmanager.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -438,8 +316,8 @@ $updateSQL = sprintf("UPDATE dailyscripture SET scripture=%s, istletter=%s, vers
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($twconn, $updateSQL) or die(mysqli_error());
 
   $updateGoTo = "Contentmanager.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -477,8 +355,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form8")) {
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($twconn, $updateSQL) or die(mysqli_error());
 
   $updateGoTo = "Contentmanager.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -516,8 +394,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form9")) {
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($twconn, $updateSQL) or die(mysqli_error());
 
   $updateGoTo = "Contentmanager.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -555,8 +433,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form10")) {
 		
 		
 		
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($twconn, $updateSQL) or die(mysqli_error());
 
   $updateGoTo = "Contentmanager.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -566,41 +444,41 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form10")) {
   header(sprintf("Location: %s", $updateGoTo));
 }
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn);
 $query_Recordset1 = "SELECT * FROM content WHERE id = 'bday'";
-$Recordset1 = mysql_query($query_Recordset1, $twconn) or die(mysql_error());
-$row_Recordset1 = mysql_fetch_assoc($Recordset1);
-$totalRows_Recordset1 = mysql_num_rows($Recordset1);
+$Recordset1 = mysqli_query($twconn,$query_Recordset1) or die(mysqli_error());
+$row_Recordset1 = mysqli_fetch_assoc($Recordset1);
+$totalRows_Recordset1 = mysqli_num_rows($Recordset1);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn);
 $query_wed = "SELECT * FROM content WHERE id = 'wed'";
-$wed = mysql_query($query_wed, $twconn) or die(mysql_error());
-$row_wed = mysql_fetch_assoc($wed);
-$totalRows_wed = mysql_num_rows($wed);
+$wed = mysqli_query($twconn,$query_wed) or die(mysqli_error());
+$row_wed = mysqli_fetch_assoc($wed);
+$totalRows_wed = mysqli_num_rows($wed);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn);
 $query_extra = "SELECT * FROM content WHERE id = 'extra'";
-$extra = mysql_query($query_extra, $twconn) or die(mysql_error());
-$row_extra = mysql_fetch_assoc($extra);
-$totalRows_extra = mysql_num_rows($extra);
+$extra = mysqli_query($twconn, $query_extra) or die(mysqli_error());
+$row_extra = mysqli_fetch_assoc($extra);
+$totalRows_extra = mysqli_num_rows($extra);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn);
 $query_extra2 = "SELECT * FROM content WHERE id = 'extra2'";
-$extra2 = mysql_query($query_extra2, $twconn) or die(mysql_error());
-$row_extra2 = mysql_fetch_assoc($extra2);
-$totalRows_extra2 = mysql_num_rows($extra2);
+$extra2 = mysqli_query($twconn, $query_extra2) or die(mysqli_error());
+$row_extra2 = mysqli_fetch_assoc($extra2);
+$totalRows_extra2 = mysqli_num_rows($extra2);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn);
 $query_extra3 = "SELECT * FROM content WHERE id = 'extra3'";
-$extra3 = mysql_query($query_extra3, $twconn) or die(mysql_error());
-$row_extra3 = mysql_fetch_assoc($extra3);
-$totalRows_extra3 = mysql_num_rows($extra3);
+$extra3 = mysqli_query($twconn, $query_extra3) or die(mysqli_error());
+$row_extra3 = mysqli_fetch_assoc($extra3);
+$totalRows_extra3 = mysqli_num_rows($extra3);
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn);
 $query_dscrip = "SELECT * FROM dailyscripture";
-$dscrip = mysql_query($query_dscrip, $twconn) or die(mysql_error());
-$row_dscrip = mysql_fetch_assoc($dscrip);
-$totalRows_dscrip = mysql_num_rows($dscrip);
+$dscrip = mysqli_query($twconn, $query_dscrip) or die(mysqli_error());
+$row_dscrip = mysqli_fetch_assoc($dscrip);
+$totalRows_dscrip = mysqli_num_rows($dscrip);
 
 
 
@@ -892,15 +770,15 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 </body>
 </html>
 <?php
-mysql_free_result($Recordset1);
+mysqli_free_result($Recordset1);
 
-mysql_free_result($wed);
+mysqli_free_result($wed);
 
-mysql_free_result($extra);
+mysqli_free_result($extra);
 
-mysql_free_result($extra2);
+mysqli_free_result($extra2);
 
-mysql_free_result($extra3);
+mysqli_free_result($extra3);
 
-mysql_free_result($dscrip);
+mysqli_free_result($dscrip);
 ?>

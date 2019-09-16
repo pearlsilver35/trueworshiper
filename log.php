@@ -49,7 +49,7 @@ if (isset($_POST['username'])) {
   $MM_redirectLoginSuccess = "admin.php";
   $MM_redirectLoginFailed = "log.php";
   $MM_redirecttoReferrer = false;
-  mysql_select_db($database_twconn, $twconn);
+  mysqli_select_db($twconn,$database_twconn, $twconn);
   
   $LoginRS__query=sprintf("SELECT Name, Password FROM tb1 WHERE Name=%s AND Password=%s",
     GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 

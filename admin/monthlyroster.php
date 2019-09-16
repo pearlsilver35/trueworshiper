@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -39,7 +39,7 @@ if (!isset($_SESSION)) {
   
 }
 if (!isset($_SESSION["sess_username"])){
-       header("Location: ../login/index.php?err=2");
+	     header("Location: ../login/index.php?err=2");
 }
 
 // ** Logout the current user. **
@@ -57,7 +57,7 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
   unset($_SESSION['sess_userrole']);
   unset($_SESSION['sess_user_id']);
   unset($_SESSION['PrevUrl']);
-  
+	
   $logoutGoTo = "../login/index.php";
   if ($logoutGoTo) {
     header("Location: $logoutGoTo");
@@ -73,7 +73,6 @@ if (!isset($_SESSION)) {
 }
 
 
-
 $roater_data = "";
 /**
 <?php do { ?>
@@ -84,7 +83,7 @@ $roater_data = "";
                 <td><?php echo $row_pray2['Name']; ?></td>
                 <td><?php echo $row_pray3['Name']; ?></td>
                 <td><?php echo $row_pray4['Name']; ?></td>
-              <td><?php echo $row_preacher['Name']; ?></td>
+       		    <td><?php echo $row_preacher['Name']; ?></td>
                 
            <?php    ($row_pray1 = mysqli_fetch_assoc($pray1))  ?>
            <?php      ($row_pray2 = mysqli_fetch_assoc($pray2))  ?>
@@ -103,20 +102,20 @@ $alternativeUsers = array();
 function getRandomUser($data, $type, $anew) {
   switch ($anew) {
     case 0:
-      $selected = -1;
-      global $selectedUser;
-      $userCount = count($data) - 1;
-      for ($i=0; $i < 1000; $i++) { 
-        $chosen = rand(0, $userCount);
-        $user = $data[$chosen];
-        $chosenType = $user[$type];
-        $chosenType = strtolower($chosenType);
-        if (!in_array($chosen, $selectedUser) && $chosenType == "yes") {
-          array_push($selectedUser, $chosen);
-          $selected = $chosen;
-          break;
-        }
-      }
+    	$selected = -1;
+    	global $selectedUser;
+    	$userCount = count($data) - 1;
+    	for ($i=0; $i < 1000; $i++) { 
+    		$chosen = rand(0, $userCount);
+    		$user = $data[$chosen];
+    		$chosenType = $user[$type];
+    		$chosenType = strtolower($chosenType);
+    		if (!in_array($chosen, $selectedUser) && $chosenType == "yes") {
+    			array_push($selectedUser, $chosen);
+    			$selected = $chosen;
+    			break;
+    		}
+    	}
       break;
     case 1:
       $selected = -1;
@@ -143,15 +142,12 @@ function getRandomUser($data, $type, $anew) {
     default:
       break;
   }
-  return $selected;
+	return $selected;
 }
 
 function getRow($data) {
-  $row_data = "";
-
-
-
-//prayer0
+	$row_data = "";
+   //prayer0
   $randSelected = getRandomUser($data, "prayer",0);
   if ($randSelected != -1) {
     $user = $data[$randSelected];
@@ -159,23 +155,23 @@ function getRow($data) {
     $row_data .= '<td>'.$name.'</td>';
   } else {
     $randSelected = getRandomUser($data, "prayer",1);
-    $user = $data[$randSelected];
+		$user = $data[$randSelected];
     $name = $user["name"];
     $row_data .= '<td>'.$name.'</td>';
-  }
-  //singer
-  $randSelected = getRandomUser($data, "singer",0);
-  if ($randSelected != -1) {
-    $user = $data[$randSelected];
-    $name = $user["name"];
-    $row_data .= '<td>'.$name.'</td>';
-  } else {
+	}
+	//singer
+	$randSelected = getRandomUser($data, "singer",0);
+	if ($randSelected != -1) {
+		$user = $data[$randSelected];
+		$name = $user["name"];
+		$row_data .= '<td>'.$name.'</td>';
+	} else {
     $randSelected = getRandomUser($data, "singer",1);
-    $user = $data[$randSelected];
+		$user = $data[$randSelected];
     $name = $user["name"];
     $row_data .= '<td>'.$name.'</td>';
-  }
-  //prayer1
+	}
+	//prayer1
   $randSelected = getRandomUser($data, "prayer",0);
   if ($randSelected != -1) {
     $user = $data[$randSelected];
@@ -183,11 +179,11 @@ function getRow($data) {
     $row_data .= '<td>'.$name.'</td>';
   } else {
     $randSelected = getRandomUser($data, "prayer",1);
-    $user = $data[$randSelected];
+		$user = $data[$randSelected];
     $name = $user["name"];
     $row_data .= '<td>'.$name.'</td>';
-  }
-  //prayer2
+	}
+	//prayer2
   $randSelected = getRandomUser($data, "prayer",0);
   if ($randSelected != -1) {
     $user = $data[$randSelected];
@@ -195,11 +191,11 @@ function getRow($data) {
     $row_data .= '<td>'.$name.'</td>';
   } else {
     $randSelected = getRandomUser($data, "prayer",1);
-    $user = $data[$randSelected];
+		$user = $data[$randSelected];
     $name = $user["name"];
     $row_data .= '<td>'.$name.'</td>';
-  }
-  //prayer3
+	}
+	//prayer3
   $randSelected = getRandomUser($data, "prayer",0);
   if ($randSelected != -1) {
     $user = $data[$randSelected];
@@ -207,11 +203,11 @@ function getRow($data) {
     $row_data .= '<td>'.$name.'</td>';
   } else {
     $randSelected = getRandomUser($data, "prayer",1);
-    $user = $data[$randSelected];
+		$user = $data[$randSelected];
     $name = $user["name"];
     $row_data .= '<td>'.$name.'</td>';
-  }
-  //prayer4
+	}
+	//prayer4
   $randSelected = getRandomUser($data, "prayer",0);
   if ($randSelected != -1) {
     $user = $data[$randSelected];
@@ -219,11 +215,11 @@ function getRow($data) {
     $row_data .= '<td>'.$name.'</td>';
   } else {
     $randSelected = getRandomUser($data, "prayer",1);
-    $user = $data[$randSelected];
+		$user = $data[$randSelected];
     $name = $user["name"];
     $row_data .= '<td>'.$name.'</td>';
-  }
-  //preacher
+	}
+	//preacher
   $randSelected = getRandomUser($data, "preacher",0);
   if ($randSelected != -1) {
     $user = $data[$randSelected];
@@ -234,61 +230,57 @@ function getRow($data) {
     $user = $data[$randSelected];
     $name = $user["name"];
     $row_data .= '<td>'.$name.'</td>';
-  }
+	}
 
 
 
-  return $row_data;
+	return $row_data;
 }
 
 function resetData() {
-  $selectedUser = array();
+	$selectedUser = array();
 }
 
 
 //should be in a class
 ///////////////////////
 
-if (mysqli_num_rows($query = mysqli_query($shoogarh_conn, "SELECT * FROM tb1")) > 0) {
-  $data = array();
-  while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-    $name = $row["Name"];
-    $singer = $row["Singer"];
-    $prayer = $row["Prayer"];
-    $preacher = $row["Preacher"];
-    $user = array("name" => $name,"singer" => $singer,"prayer" => $prayer,"preacher" => $preacher);
-    array_push($data, $user);
+if (mysqli_num_rows($query = mysqli_query($shoogarh_conn, "SELECT * FROM `tb1` WHERE Leaves = 'no' ")) > 0) {
+	$data = array();
+	while ($row = mysqli_fetch_array($query, mysqli_ASSOC)) {
+		$name = $row["Name"];
+		$singer = $row["Singer"];
+		$prayer = $row["Prayer"];
+		$preacher = $row["Preacher"];
+		$user = array("name" => $name,"singer" => $singer,"prayer" => $prayer,"preacher" => $preacher);
+		array_push($data, $user);
 
-  }
-
-  //in dis case... data is reusabe.. shuffle and co -------
-  
-  $roater_data .= '<td>Week1</td><tr><td>Mon</td>'.getRow($data).'<td rowspan = 45 ><p class = "vertical-text">Shacking Hands and exchanging pleasentrys</p></td></tr>';
-  $roater_data .= '<tr><td>Tue</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Wed</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Thu</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Fri</td>'.getRow($data).'</tr>';
-  $roater_data .= '<td>Week2</td><tr><td>Mon</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Tue</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Wed</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Thu</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Fri</td>'.getRow($data).'</tr>';
-  $roater_data .= '<td>Week3</td><tr><td>Mon</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Tue</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Wed</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Thu</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Fri</td>'.getRow($data).'</tr>';
-  $roater_data .= '<td>Week4</td><tr><td>Mon</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Tue</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Wed</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Thu</td>'.getRow($data).'</tr>';
-  $roater_data .= '<tr><td>Fri</td>'.getRow($data).'</tr>';
-
-
-
-
+	}
+	//in dis case... data is reusabe.. shuffle and co -------
+	
+	$roater_data .= '<td>week1</td><tr><td>Mon</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Tue</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Wed</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Thu</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Fri</td>'.getRow($data).'</tr>';
+	$roater_data .= '<td>week2</td><tr><td>Mon</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Tue</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Wed</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Thu</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Fri</td>'.getRow($data).'<td>Shaking of Hands and Exchange of Pleasantries</td></tr>';
+	$roater_data .= '<td>week3</td><tr><td>Mon</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Tue</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Wed</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Thu</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Fri</td>'.getRow($data).'</tr>';
+	$roater_data .= '<td>week4</td><tr><td>Mon</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Tue</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Wed</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Thu</td>'.getRow($data).'</tr>';
+	$roater_data .= '<tr><td>Fri</td>'.getRow($data).'</tr>';
 
 }
+
 /*
 <td>$row_dissinger['Name']; ?></td>
 <!-- <td>$row_pray1['Name']; ?></td> -->
@@ -299,38 +291,38 @@ if (mysqli_num_rows($query = mysqli_query($shoogarh_conn, "SELECT * FROM tb1")) 
 */
 
 //Do not start a column with capital letter
-// mysql_select_db($database_twconn, $twconn);
+// mysqli_select_db($twconn, $database_twconn);
 // $query_dissinger = "SELECT Name FROM tb1 WHERE Singer = 'yes' ORDER BY rand()  limit 5";
 // $dissinger = mysqli_query($twconn,$query_dissinger) or die(mysqli_error($twconn));
 // $row_dissinger = mysqli_fetch_assoc($dissinger);
 // $totalRows_dissinger = mysqli_num_rows($dissinger);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn);
 // $query_pray1 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' GROUP BY id  ORDER BY rand() limit 5";
 // $pray1 = mysqli_query($twconn, $query_pray1) or die(mysqli_error($twconn));
 // $row_pray1 = mysqli_fetch_assoc($pray1);
 // $totalRows_pray1 = mysqli_num_rows($pray1);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn);
 // // $query_pray2 = "SELECT Name FROM tb1 WHERE Prayer = 'yes'  and id NOT :id  ORDER BY rand() limit 5";
 // $query_pray2 = "SELECT Name FROM tb1 WHERE Prayer = 'yes'  ORDER BY rand() limit 5";
 // $pray2 = mysqli_query($twconn, $query_pray2) or die(mysqli_error($twconn));
 // $row_pray2 = mysqli_fetch_assoc($pray2);  
 // $totalRows_pray2 = mysqli_num_rows($pray2);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn);
 // $query_pray3 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' ORDER BY rand() limit 5";
 // $pray3 = mysqli_query($twconn, $query_pray3) or die(mysqli_error($twconn));
 // $row_pray3 = mysqli_fetch_assoc($pray3);
 // $totalRows_pray3 = mysqli_num_rows($pray3);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn);
 // $query_pray4 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' ORDER BY rand() limit 5";
 // $pray4 = mysqli_query($twconn, $query_pray4) or die(mysqli_error($twconn));
 // $row_pray4 = mysqli_fetch_assoc($pray4);
 // $totalRows_pray4 = mysqli_num_rows($pray4);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn);
 // $query_preacher = "SELECT Name FROM tb1 WHERE Preacher = 'yes' ORDER BY rand() limit 5";
 // $preacher = mysqli_query($twconn, $query_preacher) or die(mysqli_error($twconn));
 // $row_preacher = mysqli_fetch_assoc($preacher);
@@ -342,10 +334,10 @@ if (isset($_SERVER['QUERY_STRING'])) {
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "subroaster")) {
   $insertSQL = sprintf("INSERT INTO test (data, time ) VALUES (%s, now())",
                        GetSQLValueString($_POST['data'], "text"),
-             GetSQLValueString($_POST['time'], "text"));
+					   GetSQLValueString($_POST['time'], "text"));
 
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($insertSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($insertSQL, $twconn) or die(mysqli_error());
 
   $insertGoTo = "monthlyroster.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -356,24 +348,24 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "subroaster")) {
 }
 
  /*?>$sql select Name from tb1 where Singer ='Yes'
-   $Result = mysql - query($d1)
-   while($row = mysql fetch.array( $Result))
+   $Result = mysqli - query($d1)
+   while($row = mysqli fetch.array( $Result))
    {
-     $sql = select name from tb1 where Prayer = 'Yes' AND Name <> $d1
-      $Result = mysql - query($d2)
-    
-   while($row = mysql fetch.array( $Result))
+	   $sql = select name from tb1 where Prayer = 'Yes' AND Name <> $d1
+	    $Result = mysqli - query($d2)
+		
+   while($row = mysqli fetch.array( $Result))
    {
-      $sql = select name from tb1 where Prayer = 'Yes' AND Name <> $d1 AND Name <> $d2
-      $Result = mysql - query($d3)<?php */
-    
+	    $sql = select name from tb1 where Prayer = 'Yes' AND Name <> $d1 AND Name <> $d2
+	    $Result = mysqli - query($d3)<?php */
+		
 ?>
 <?php
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn, $database_twconn);
 $query_Recordset1 = "SELECT * FROM test ORDER BY id DESC";
-$Recordset1 = mysql_query($query_Recordset1, $twconn) or die(mysql_error());
-$row_Recordset1 = mysql_fetch_assoc($Recordset1);
-$totalRows_Recordset1 = mysql_num_rows($Recordset1);
+$Recordset1 = mysqli_query($twconn, $query_Recordset1) or die(mysqli_error());
+$row_Recordset1 = mysqli_fetch_assoc($Recordset1);
+$totalRows_Recordset1 = mysqli_num_rows($Recordset1);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -472,7 +464,6 @@ function MM_validateForm() { //v4.0
 
 
                   <table border="1" >
-                    <TR class="box-shadow"><TD>
 <table class="table table-striped table-bordered table-hover table-condensed " !important>
 
            <tr class="info">
@@ -492,9 +483,9 @@ function MM_validateForm() { //v4.0
  
            
           
-      </table>
- </TD></TR>
- </table>
+ 		  </table>
+
+
 
   <p class="text-right ">This is the active roaster currently on display and was uploaded on <?php echo $row_Recordset1['time']; ?>  </p>
   
@@ -515,8 +506,7 @@ function MM_validateForm() { //v4.0
         </button>
       </div>
       <div class="modal-body">              
-    <table border="1" >
-      
+		<table border="1" >
 <table class="table table-striped table-bordered table-hover table-condensed " !important>
 
            <tr class="info">
@@ -536,16 +526,13 @@ function MM_validateForm() { //v4.0
           <input name="data" type="hidden" value="<?php echo $roater_data; ?>" > 
           
            
-     
-      </table>
-     
-      </table>
+	   
+ 		  </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        <input name="submit" class="btn btn-success" type="submit">
+        <input name="submit" type="submit">
     <input type="hidden" name="MM_insert" value="subroaster">
-    
+	  
       </div>
      </form>
     </div>
@@ -577,17 +564,17 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 </body>
 </html>
 <?php
-mysql_free_result($Recordset1);
+mysqli_free_result($Recordset1);
 
-// mysql_free_result($dissinger);
+// mysqli_free_result($dissinger);
 
-// mysql_free_result($pray1);
+// mysqli_free_result($pray1);
 
-// mysql_free_result($pray2);
+// mysqli_free_result($pray2);
 
-// mysql_free_result($pray3);
+// mysqli_free_result($pray3);
 
-// mysql_free_result($pray4);
+// mysqli_free_result($pray4);
 
-// mysql_free_result($preacher);
+// mysqli_free_result($preacher);
 ?>

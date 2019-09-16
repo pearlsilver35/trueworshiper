@@ -48,7 +48,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -79,7 +79,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -110,7 +110,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -139,7 +139,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -170,7 +170,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -201,7 +201,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -232,7 +232,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -263,7 +263,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -296,7 +296,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -331,16 +331,13 @@ $month = $_POST['month'];
 $day = $_POST['day'];
 
 $DOB = "0000" . "-" . $month . "-" . $day;  
-  $insertSQL = sprintf("INSERT INTO tb1 (Name, Department, DOB, Singer, Prayer, Preacher) VALUES (%s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tb1 (Name, Department, DOB) VALUES (%s, %s, %s)",
                        GetSQLValueString($_POST['Name'], "text"),
                        GetSQLValueString($_POST['Department'], "text"),
-                       GetSQLValueString($DOB, "date"),
-                       GetSQLValueString($_POST['Singer'], "text"),
-                       GetSQLValueString($_POST['Prayer'], "text"),
-                       GetSQLValueString($_POST['Preacher'], "text"));
+                       GetSQLValueString($DOB, "date"));
 
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($insertSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($twconn, $insertSQL) or die(mysqli_error());
 
   $insertGoTo = "staffs.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -365,8 +362,8 @@ $DOB = "0000" . "-" . $month . "-" . $day;
                        GetSQLValueString($_POST['Preacher'], "text"),
                        GetSQLValueString($_POST['id'], "int"));
 
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($updateSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($twconn, $updateSQL) or die(mysqli_error());
 
   $updateGoTo = "staffs.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -380,8 +377,8 @@ if ((isset($_POST["MM_delete"])) && ($_POST["MM_delete"] == "formdelete")) {
   $deleteSQL = sprintf("DELETE FROM tb1 WHERE id=%s",
                        GetSQLValueString($_POST['id'], "int"));
 
-  mysql_select_db($database_twconn, $twconn);
-  $Result1 = mysql_query($deleteSQL, $twconn) or die(mysql_error());
+  mysqli_select_db($twconn,$database_twconn);
+  $Result1 = mysqli_query($twconn, $deleteSQL) or die(mysqli_error());
 
   $deleteGoTo = "staffs.php";
   if (isset($_SERVER['QUERY_STRING'])) {
@@ -398,17 +395,17 @@ if (isset($_GET['pageNum_viewstaffs'])) {
 }
 $startRow_viewstaffs = $pageNum_viewstaffs * $maxRows_viewstaffs;
 
-mysql_select_db($database_twconn, $twconn);
+mysqli_select_db($twconn,$database_twconn);
 $query_viewstaffs = "SELECT id, Name, Department, DOB, day(DOB), month(DOB), Password, `Role`, Leaves, Singer, Prayer, Preacher FROM tb1";
 $query_limit_viewstaffs = sprintf("%s LIMIT %d, %d", $query_viewstaffs, $startRow_viewstaffs, $maxRows_viewstaffs);
-$viewstaffs = mysql_query($query_limit_viewstaffs, $twconn) or die(mysql_error());
-$row_viewstaffs = mysql_fetch_assoc($viewstaffs);
+$viewstaffs = mysqli_query($twconn, $query_limit_viewstaffs) or die(mysqli_error());
+$row_viewstaffs = mysqli_fetch_assoc($viewstaffs);
 
 if (isset($_GET['totalRows_viewstaffs'])) {
   $totalRows_viewstaffs = $_GET['totalRows_viewstaffs'];
 } else {
-  $all_viewstaffs = mysql_query($query_viewstaffs);
-  $totalRows_viewstaffs = mysql_num_rows($all_viewstaffs);
+  $all_viewstaffs = mysqli_query($twconn, $query_viewstaffs);
+  $totalRows_viewstaffs = mysqli_num_rows($all_viewstaffs);
 }
 $totalPages_viewstaffs = ceil($totalRows_viewstaffs/$maxRows_viewstaffs)-1;
 
@@ -522,7 +519,12 @@ function MM_validateForm() { //v4.0
 <div class="col-md-12">
 <button type="button" style="float:left" class="text-info" data-toggle="modal" data-target="#modaladdnew">Add New</button>
 
-					
+					<div class="input-group">
+                    <input type="text" style="float:right" class="col-md-2 " placeholder="Search for...">
+                    <span class="input-group-btn" >
+                      <button class="btn btn-default sty" type="button">Go!</button>
+                    </span>
+                    </div>
                     
 </div>
   <table border="1" >
@@ -567,8 +569,8 @@ function MM_validateForm() { //v4.0
       <div class="modal-footer">
       <form action="<?php echo $editFormAction; ?>" method="post" name="formdelete">
       <input type="hidden" value="<?php echo $row_viewstaffs['id']; ?>" name="id"  id="id">
-        <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
-        <button type="submit" class="btn btn-danger">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="submit" class="btn btn-primary">Yes</button>
          <input type="hidden" name="MM_delete" value="formdelete">
         </form>
       </div>
@@ -699,7 +701,6 @@ function MM_validateForm() { //v4.0
         <option  value="Yes" <?php if( $row_viewstaffs['Prayer'] =='Yes'){ echo 'selected'; }?>>Yes</option>
     <option value="No" <?php if( $row_viewstaffs['Prayer'] =='No'){ echo 'selected'; }?> >No</option>
                            </select>
-                           </div>
         <div class="form-group">
           <label for="Preacher">Preacher</label>
                            <select name="Preacher" class="form-control" id="Preacher" >
@@ -708,12 +709,12 @@ function MM_validateForm() { //v4.0
     <option value="No" <?php if( $row_viewstaffs['Preacher'] =='No'){ echo 'selected'; }?> >No</option>
                            </select>
         </div>
-      
+      </div>
       <div class="modal-footer">
       
         <button   type="submit" class="btn btn-primary">Save changes</button>
      <input type="hidden" name="MM_update" value="formedit">
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      
     </form>
       </div>
       
@@ -726,7 +727,7 @@ function MM_validateForm() { //v4.0
   
 
   
-  <?php } while ($row_viewstaffs = mysql_fetch_assoc($viewstaffs)); ?>
+  <?php } while ($row_viewstaffs = mysqli_fetch_assoc($viewstaffs)); ?>
   
 </table>
   </table>
@@ -821,32 +822,7 @@ function MM_validateForm() { //v4.0
                            
              			 </div> 
                          
-                        <div class="form-group">
-          <label for="Singer">Singer</label>
-                           <select name="Singer" class="form-control" id="Singer" >
-                             
-        <option  value="Yes" >Yes</option>
-        <option  value="No" >No</option>
-    
-                           </select>
-         
-        </div>
-        <div class="form-group">
-          <label for="Prayer">Prayer</label>
-                           <select name="Prayer" class="form-control" id="Prayer" >
-                             
-        <option  value="Yes" >Yes</option>
-        <option  value="No" >No</option>
-                           </select>
-                           </div>
-        <div class="form-group">
-          <label for="Preacher">Preacher</label>
-                           <select name="Preacher" class="form-control" id="Preacher" >
-                             
-        <option  value="Yes" >Yes</option>
-        <option  value="No" >No</option>
-                           </select>
-        </div>
+                        
               			          
 		  <?php /*?> <!-- <span id="sprycheckbox1">
                            <div class="checkbox">
@@ -870,9 +846,9 @@ function MM_validateForm() { //v4.0
 						  
       </div>
       <div class="modal-footer">
-        <input class="btn btn-success" name="submit" type="submit">
+        <input name="submit" type="submit">
 	    <input type="hidden" name="MM_insert" value="form">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        
       </div>
       </form>
     </div>
@@ -916,5 +892,5 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 </body>
 </html>
 <?php
-mysql_free_result($viewstaffs);
+mysqli_free_result($viewstaffs);
 ?>

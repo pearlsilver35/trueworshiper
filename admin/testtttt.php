@@ -6,7 +6,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -221,7 +221,7 @@ function resetData() {
 
 if (mysqli_num_rows($query = mysqli_query($shoogarh_conn, "SELECT * FROM tb1")) > 0) {
 	$data = array();
-	while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+	while ($row = mysqli_fetch_array($query, mysqli_ASSOC)) {
 		$name = $row["Name"];
 		$singer = $row["Singer"];
 		$prayer = $row["Prayer"];
@@ -266,38 +266,38 @@ $roater_data .= '<tr><td>Mon</td>'.getRow($data).'</tr>';
 */
 
 //Do not start a column with capital letter
-// mysql_select_db($database_twconn, $twconn);
+// mysqli_select_db($twconn,$database_twconn, $twconn);
 // $query_dissinger = "SELECT Name FROM tb1 WHERE Singer = 'yes' ORDER BY rand()  limit 5";
 // $dissinger = mysqli_query($twconn,$query_dissinger) or die(mysqli_error($twconn));
 // $row_dissinger = mysqli_fetch_assoc($dissinger);
 // $totalRows_dissinger = mysqli_num_rows($dissinger);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn, $twconn);
 // $query_pray1 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' GROUP BY id  ORDER BY rand() limit 5";
 // $pray1 = mysqli_query($twconn, $query_pray1) or die(mysqli_error($twconn));
 // $row_pray1 = mysqli_fetch_assoc($pray1);
 // $totalRows_pray1 = mysqli_num_rows($pray1);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn, $twconn);
 // // $query_pray2 = "SELECT Name FROM tb1 WHERE Prayer = 'yes'  and id NOT :id  ORDER BY rand() limit 5";
 // $query_pray2 = "SELECT Name FROM tb1 WHERE Prayer = 'yes'  ORDER BY rand() limit 5";
 // $pray2 = mysqli_query($twconn, $query_pray2) or die(mysqli_error($twconn));
 // $row_pray2 = mysqli_fetch_assoc($pray2);  
 // $totalRows_pray2 = mysqli_num_rows($pray2);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn, $twconn);
 // $query_pray3 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' ORDER BY rand() limit 5";
 // $pray3 = mysqli_query($twconn, $query_pray3) or die(mysqli_error($twconn));
 // $row_pray3 = mysqli_fetch_assoc($pray3);
 // $totalRows_pray3 = mysqli_num_rows($pray3);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn, $twconn);
 // $query_pray4 = "SELECT Name FROM tb1 WHERE Prayer = 'yes' ORDER BY rand() limit 5";
 // $pray4 = mysqli_query($twconn, $query_pray4) or die(mysqli_error($twconn));
 // $row_pray4 = mysqli_fetch_assoc($pray4);
 // $totalRows_pray4 = mysqli_num_rows($pray4);
 
-// // mysql_select_db($database_twconn, $twconn);
+// // mysqli_select_db($twconn,$database_twconn, $twconn);
 // $query_preacher = "SELECT Name FROM tb1 WHERE Preacher = 'yes' ORDER BY rand() limit 5";
 // $preacher = mysqli_query($twconn, $query_preacher) or die(mysqli_error($twconn));
 // $row_preacher = mysqli_fetch_assoc($preacher);
@@ -461,13 +461,13 @@ function MM_validateForm() { //v4.0
                 <td><?php echo $row_pray4['Name']; ?></td>
        		    <td><?php echo $row_preacher['Name']; ?></td>
                 
-           <?php    ($row_pray1 = mysql_fetch_assoc($pray1))  ?>
-           <?php      ($row_pray2 = mysql_fetch_assoc($pray2))  ?>
-           <?php      ($row_pray3 = mysql_fetch_assoc($pray3))  ?>
-           <?php      ($row_pray4 = mysql_fetch_assoc($pray4))  ?>
-             <?php      ($row_preacher = mysql_fetch_assoc($preacher))  ?>
+           <?php    ($row_pray1 = mysqli_fetch_assoc($pray1))  ?>
+           <?php      ($row_pray2 = mysqli_fetch_assoc($pray2))  ?>
+           <?php      ($row_pray3 = mysqli_fetch_assoc($pray3))  ?>
+           <?php      ($row_pray4 = mysqli_fetch_assoc($pray4))  ?>
+             <?php      ($row_preacher = mysqli_fetch_assoc($preacher))  ?>
              </tr>
-  <?php } while ($row_dissinger = mysql_fetch_assoc($dissinger))  ?>
+  <?php } while ($row_dissinger = mysqli_fetch_assoc($dissinger))  ?>
              
              </td>
              
@@ -509,15 +509,15 @@ var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 </body>
 </html>
 <?php
-// mysql_free_result($dissinger);
+// mysqli_free_result($dissinger);
 
-// mysql_free_result($pray1);
+// mysqli_free_result($pray1);
 
-// mysql_free_result($pray2);
+// mysqli_free_result($pray2);
 
-// mysql_free_result($pray3);
+// mysqli_free_result($pray3);
 
-// mysql_free_result($pray4);
+// mysqli_free_result($pray4);
 
-// mysql_free_result($preacher);
+// mysqli_free_result($preacher);
 ?>
